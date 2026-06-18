@@ -314,6 +314,8 @@ body{
   .brand-text h1{font-size:1.1rem}
   .acct-chip .who{max-width:64px}.acct-chip .who b{max-width:64px}
   .statgrid{grid-template-columns:1fr 1fr}
+  #view-study .stage,#view-quiz .stage{min-height:96px}
+  #pandaStudy .panda,#pandaQuiz .panda{height:104px!important;width:auto!important}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.06ms!important}
@@ -908,18 +910,31 @@ function updateDueCounts(){
 /* swipe / drag */
 function initSwipe(){
   var wrap=$("#cardWrap");var card=$("#card");
-  var startX=0,startY=0,dx=0,dy=0,active=false,moved=false;
-  function down(x,y){startX=x;startY=y;dx=0;dy=0;active=true;moved=false;card.classList.add("dragging");}
-  function move(x,y){if(!active)return;dx=x-startX;dy=y-startY;if(Math.abs(dx)>6||Math.abs(dy)>6)moved=true;
-    if(Math.abs(dx)>Math.abs(dy)){var rot=dx/18;card.style.transform=(study.flipped?"rotateY(180deg) ":"")+"translateX("+dx+"px) rotate("+rot+"deg)";}
+  var startX=0,startY=0,dx=0,dy=0,active=false,moved=false,axis=null;
+  function down(x,y){startX=x;startY=y;dx=0;dy=0;active=true;moved=false;axis=null;card.classList.add("dragging");}
+  function move(x,y){
+    if(!active)return false;
+    dx=x-startX;dy=y-startY;
+    if(axis===null && (Math.abs(dx)>8||Math.abs(dy)>8)){axis=Math.abs(dx)>Math.abs(dy)?"h":"v";moved=true;}
+    if(axis==="h"){
+      var rot=dx/18;
+      card.style.transform=(study.flipped?"rotateY(180deg) ":"")+"translateX("+dx+"px) rotate("+rot+"deg)";
+      return true; // horizontal: caller should block page scroll
+    }
+    return false;
   }
-  function up(){if(!active)return;active=false;card.classList.remove("dragging");card.style.transform="";
-    if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)){if(dx<0)nextCard(true);else prevCard(true);}
+  function up(){
+    if(!active)return;active=false;card.classList.remove("dragging");card.style.transform="";
+    if(axis==="h"&&Math.abs(dx)>60){if(dx<0)nextCard(true);else prevCard(true);}
     else if(!moved){flipCard();}
   }
   wrap.addEventListener("touchstart",function(e){down(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
-  wrap.addEventListener("touchmove",function(e){move(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
+  wrap.addEventListener("touchmove",function(e){
+    var horiz=move(e.touches[0].clientX,e.touches[0].clientY);
+    if(horiz&&e.cancelable)e.preventDefault(); // lock the page while swiping the card sideways
+  },{passive:false});
   wrap.addEventListener("touchend",up);
+  wrap.addEventListener("touchcancel",up);
   wrap.addEventListener("mousedown",function(e){down(e.clientX,e.clientY);});
   window.addEventListener("mousemove",function(e){if(active)move(e.clientX,e.clientY);});
   window.addEventListener("mouseup",up);
@@ -1196,8 +1211,8 @@ function updateChip(){
 }
 function renderPanda(){
   var stage=stageFromGP(growthPoints(acct()).gp);
-  var ps=$("#pandaStudy");if(ps)ps.innerHTML=pandaSVG(stage,118);
-  var pq=$("#pandaQuiz");if(pq)pq.innerHTML=pandaSVG(stage,104);
+  var ps=$("#pandaStudy");if(ps)ps.innerHTML=pandaSVG(stage,100);
+  var pq=$("#pandaQuiz");if(pq)pq.innerHTML=pandaSVG(stage,92);
 }
 function syncLangButtons(){
   var L=langs();
