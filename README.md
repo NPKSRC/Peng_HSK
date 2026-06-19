@@ -1,16 +1,16 @@
 # 🐼 Panda HSK — Chinese Vocabulary Trainer
 
-A friendly, single-file web app for learning **HSK 1–4** Chinese vocabulary (2000 words) with
+A friendly, single-file web app for learning **HSK 1–5** Chinese vocabulary (3600 words) with
 swipeable flashcards, spaced-repetition memory tracking, quizzes, and meanings in
 **English, Thai, and Japanese**. Switch between built-in **courses** — the HSK 1–3 list or your own
 **class-lesson vocabulary** — right inside the app. Meet **Bao**, your panda study buddy, who *grows up* as you learn.
 
-![level](https://img.shields.io/badge/HSK-1--4-4c9a4f) ![words](https://img.shields.io/badge/words-2000-2f6b33) ![langs](https://img.shields.io/badge/meanings-EN%20%C2%B7%20TH%20%C2%B7%20JA-3f7cc4) ![license](https://img.shields.io/badge/license-MIT-e7a83b)
+![level](https://img.shields.io/badge/HSK-1--5-4c9a4f) ![words](https://img.shields.io/badge/words-3600-2f6b33) ![langs](https://img.shields.io/badge/meanings-EN%20%C2%B7%20TH%20%C2%B7%20JA-3f7cc4) ![license](https://img.shields.io/badge/license-MIT-e7a83b)
 
 ## ✨ Features
 
 - **Switchable courses (in-app)** — a **Course** selector lets you choose which vocabulary database is
-  active: **HSK 1–4** (2000 words) or **Class lessons** (organised by lesson, with example sentences).
+  active: **HSK 1–5** (3600 words) or **Class lessons** (organised by lesson, with example sentences).
   Each course keeps its own memory progress, and the structure is built to add more courses later.
 
 - **Compact level menu** — levels are now chosen from a single **dropdown menu** (showing the current
@@ -43,16 +43,17 @@ Everything lives in one file (`index.html`) — no build step, no server, no dep
 | File | What it is |
 |------|------------|
 | `index.html` | The complete app (vocabulary built in). **This is the only file you need to publish.** |
-| `vocab-data.js` | The vocabulary as clean, editable data (EN/TH/JA), now including HSK 4 — handy for adding HSK 5+ later. |
+| `vocab-data.js` | The vocabulary as clean, editable data (EN/TH/JA), now including HSK 4 & 5 — handy for adding HSK 6+ later. |
 | `README.md` | This file. |
 | `USER-GUIDE.md` / `USER-GUIDE.pdf` | A friendly guide for learners. |
 
 > **About the Thai & Japanese:** these meanings are **AI-generated study drafts**. They're great for
 > recognition and recall, but a native speaker may want to refine a few. English meanings come from the official lists.
 >
-> **HSK 4 status:** the 1000 HSK 4 words are included with **English** meanings now; their **Thai & Japanese
-> drafts are pending** and will be added in a later update. The app skips empty TH/JA gracefully, so HSK 4
-> cards simply show English until then.
+> **HSK 4 & 5 status:** the 1000 HSK 4 and 1600 HSK 5 words are included with **English** meanings now; their
+> **Thai & Japanese drafts are pending** and will be added in a later update. The app skips empty TH/JA
+> gracefully — and in the **Meanings** row the ไทย / 日本語 toggles are **hidden for levels that have no Thai/Japanese yet**,
+> so those cards simply show English until the drafts are added.
 
 ---
 
@@ -97,9 +98,9 @@ Each word now looks like this:
 - `h` = hanzi · `p` = pinyin · `pos` = part of speech
 - `e` = English · `th` = Thai · `ja` = Japanese
 
-**HSK 4 is already included.** To add a further level (e.g. **HSK 5**), just add a `"5":[ ... ]` array to
-`HSK_DATA`. The course is now **data-driven**: `buildDatasets()` reads every level key present in `HSK_DATA`,
-sorts them numerically, and the level menu + course name (e.g. *HSK 1–5*) update automatically — **no UI code changes needed**.
+**HSK 4 and HSK 5 are already included.** To add a further level (e.g. **HSK 6**), just add a `"6":[ ... ]` array to
+`HSK_DATA`. The course is **data-driven**: `buildDatasets()` reads every level key present in `HSK_DATA`,
+sorts them numerically, and the level menu + course name (e.g. *HSK 1–6*) update automatically — **no UI code changes needed**.
 
 ### Adding a whole new course (your own material)
 The app keeps each course in a `buildDatasets()` function near the top of the main script. There are two
@@ -126,5 +127,5 @@ Just **double-click `index.html`** — it opens in your browser. No installation
 
 ## 📚 Credits & license
 
-- Vocabulary: the official **New HSK** word lists (Levels 1–4). Thai & Japanese meanings are AI-generated study aids (HSK 4 TH/JA pending).
+- Vocabulary: the official **New HSK** word lists (Levels 1–5). Thai & Japanese meanings are AI-generated study aids (HSK 4 & 5 TH/JA pending).
 - Released under the **MIT License** — free to use, modify, and share.

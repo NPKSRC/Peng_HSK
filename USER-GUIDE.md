@@ -1,6 +1,6 @@
 # 🐼 Panda HSK — User Guide
 
-Welcome! **Panda HSK** helps you learn Chinese vocabulary for the **HSK 1–4** exams. Your study
+Welcome! **Panda HSK** helps you learn Chinese vocabulary for the **HSK 1–5** exams. Your study
 buddy is **Bao**, a panda who reacts as you learn — and who *grows up* as you master more words.
 This guide walks you through everything the app can do.
 
@@ -22,7 +22,7 @@ to switch or create profiles). Below that is the **level menu**. At the **bottom
 At the top of Study, Quiz, and Browse there's a **Course** selector. Tap it to switch which vocabulary
 you're learning:
 
-- **HSK 1–4** — the 2000-word official list, grouped by level (HSK 1, 2, 3, 4).
+- **HSK 1–5** — the 3600-word official list, grouped by level (HSK 1, 2, 3, 4, 5).
 - **Class lessons** — your course vocabulary, grouped by lesson (8.10, 8.17, …), many with example sentences.
 
 Each course keeps its **own memory progress**, so your HSK words and lesson words are tracked separately —
@@ -33,10 +33,11 @@ but Bao grows from everything you learn across both. More courses can be added t
 ## Choosing your group (level or lesson)
 
 The **level menu** appears on Study, Quiz, and Browse. Instead of a long row of buttons, it's now a single
-compact selector that shows your current group (for example **HSK 4 · 1000 words**) with a **▾** chevron.
-Tap it to open the menu and pick a group; tap anywhere outside (or press **Esc**) to close it.
+compact selector with a **"Choose Level"** label, the current group (for example **HSK 5 · 1600 words**),
+and a green **▾** button on the right that makes it clear you can tap to change it. Tap it to open the menu and
+pick a group; tap anywhere outside (or press **Esc**) to close it.
 
-For the HSK course the groups are **HSK 1 / 2 / 3 / 4 / All**; for Class lessons they're each **lesson number**
+For the HSK course the groups are **HSK 1 / 2 / 3 / 4 / 5 / All**; for Class lessons they're each **lesson number**
 plus **All**. The app remembers your choice per course. (When new levels are added later, they appear here automatically.)
 
 ---
@@ -48,9 +49,9 @@ Tap to turn each language on or off. Whatever you pick shows on the back of flas
 Turn off the languages you already know to test yourself, or turn on two at once to compare.
 
 > Thai and Japanese meanings are helpful AI-generated study drafts. They're reliable for everyday
-> vocabulary; a native speaker may refine a few. **Note:** Thai and Japanese for **HSK 4** are still
-> being prepared — for now HSK 4 cards show **English** meanings, and the TH/JA toggles simply stay empty
-> for those words until the drafts are added.
+> vocabulary; a native speaker may refine a few. **Note:** Thai and Japanese for **HSK 4 and HSK 5** are still
+> being prepared. For levels that don't have them yet, the **ไทย** and **日本語** buttons are **hidden** in the
+> Meanings row, so those cards simply show **English** until the drafts are added.
 
 ---
 
@@ -62,7 +63,7 @@ This is where you learn at your own pace.
 - **Swipe left** for the next card, **swipe right** to go back. On a computer you can **drag** with the
   mouse, use the **◀ ▶ buttons**, or the **arrow keys**. Tap or press **Space** to flip.
 - **汉字 / 拼音 / Meaning first** — choose which side shows first.
-- **🔊 speaker** reads the word aloud. It now appears on **both the front and the back** of every card, so you can hear a word before or after flipping.
+- **🔊 speaker** sits at the **center-bottom of both the front and back** of every card, so you can hear a word before or after flipping. Tapping it just plays the sound — it no longer flips the card.
 - **★ (star)** on a card flags it for extra review (find these later under Browse → ★ Review, or quiz them).
 
 ### Rating a word (how memory tracking works)
@@ -122,7 +123,7 @@ Tap **Progress** to meet your panda and see how you're doing:
   The bar shows progress to the next stage.
 - **Stats** — total XP, day streak, words mastered, and quiz accuracy.
 - **Memory map** — how many of the current course's words are New / Learning / Familiar / Mastered.
-- **Mastery by level** — your mastered count for HSK 1, 2, 3, and 4.
+- **Mastery by level** — your mastered count for HSK 1, 2, 3, 4, and 5.
 - **XP — last 7 days** — a little bar chart of your recent effort.
 - **Recent activity** — your latest study, quiz, and mastery moments.
 
