@@ -442,6 +442,106 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
 .mm-done .mm-stats .l{font-size:.72rem;color:var(--ink-soft);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
 .mm-xp{display:inline-block;background:var(--gold);color:#fff;font-weight:800;padding:6px 16px;border-radius:999px;margin-top:4px}
 .mm-best{display:inline-block;margin-top:8px;color:var(--gold-deep);font-weight:800;font-size:.9rem}
+
+/* ============ GAMES HUB ============ */
+.games-hub h2{font-family:var(--display);font-weight:800;font-size:1.18rem;margin:0 0 2px}
+.games-hub .sub{margin:0 0 16px;color:var(--ink-soft);font-size:.9rem;font-weight:600}
+.game-card{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--cloud);border:1.5px solid var(--line);border-radius:var(--r-lg);padding:16px;margin-bottom:12px;cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .12s,box-shadow .15s,border-color .15s;font-family:var(--body)}
+.game-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--bamboo)}
+.game-card .gc-ic{width:58px;height:58px;flex:none;border-radius:16px;display:grid;place-items:center;background:var(--bamboo-tint);font-size:1.8rem}
+.game-card .gc-ic svg{width:52px;height:52px}
+.game-card .gc-body{min-width:0;flex:1}
+.game-card .gc-title{font-family:var(--display);font-weight:800;font-size:1.05rem;color:var(--ink);display:flex;align-items:center;gap:8px}
+.game-card .gc-desc{font-size:.82rem;color:var(--ink-soft);font-weight:600;margin-top:2px;line-height:1.3}
+.game-card .gc-go{margin-left:auto;flex:none;color:var(--bamboo);font-weight:800;font-size:1.3rem}
+.gc-tag{font-size:.6rem;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#fff;background:var(--gold);border-radius:999px;padding:2px 7px}
+.g-back{display:inline-flex;align-items:center;gap:8px;background:#fff3e6;border:1.5px solid var(--gold);color:#bd5f0e;font-family:var(--display);font-weight:800;font-size:.82rem;cursor:pointer;padding:6px 14px 6px 7px;border-radius:999px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:background .15s,border-color .15s,transform .12s,box-shadow .15s}
+.g-back svg{width:22px;height:22px;flex:none;padding:4px;border-radius:50%;background:#e3811c;color:#fff;box-shadow:0 2px 6px rgba(227,129,28,.4);transition:transform .15s}
+.g-back:hover{background:#ffe6cc;border-color:#e3811c;transform:translateX(-2px);box-shadow:var(--shadow)}
+.g-back:hover svg{transform:translateX(-2px)}
+
+/* ============ TONE HERO (Games) ============ */
+.th-setup{background:var(--cloud);border:1.5px solid var(--line);border-radius:var(--r-lg);padding:18px 16px;box-shadow:var(--shadow-sm)}
+.th-setup h2{font-family:var(--display);font-weight:800;font-size:1.18rem;margin:0 0 2px}
+.th-setup .sub{margin:0 0 14px;color:var(--ink-soft);font-size:.9rem;font-weight:600}
+.th-scope{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--bamboo-tint);border-radius:999px;padding:7px 12px;font-size:.82rem;font-weight:700;color:var(--bamboo-deep);margin-bottom:14px}
+.th-legend{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.th-legend span{display:inline-flex;align-items:center;gap:5px;background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:5px 11px;font-size:.78rem;font-weight:700;color:var(--ink-soft)}
+.th-legend span b{font-family:var(--han);font-size:1.05rem;color:var(--bamboo-deep)}
+.th-hint{font-size:.76rem;color:var(--gold-deep);font-weight:700;margin:-4px 0 12px;min-height:1em}
+
+.th-meta{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.th-pill{background:var(--cloud);border:1.5px solid var(--line);border-radius:999px;padding:6px 13px;font-weight:800;font-size:.86rem;box-shadow:var(--shadow-sm)}
+.th-pill b{color:var(--bamboo-deep)}
+.th-progress{height:7px;border-radius:999px;background:var(--paper-2);overflow:hidden;margin:0 0 18px}
+.th-progress i{display:block;height:100%;background:var(--bamboo);border-radius:999px;transition:width .3s}
+
+.th-stage{text-align:center;background:var(--cloud);border:1.5px solid var(--line);border-radius:var(--r-lg);padding:22px 16px;box-shadow:var(--shadow-sm);margin-bottom:18px}
+.th-char{font-family:var(--han);font-weight:800;font-size:4.6rem;line-height:1;color:var(--ink)}
+.th-pin{font-size:1.35rem;font-weight:700;letter-spacing:1px;color:var(--ink-soft);margin-top:8px}
+.th-reveal{font-family:var(--han);font-size:1.5rem;font-weight:800;color:var(--bamboo-deep);min-height:1.5em;margin-top:6px}
+.th-reveal.ok{color:var(--familiar)}.th-reveal.no{color:var(--seal)}
+
+/* Optional meaning hint — hidden until tapped. Shows translation only, never pinyin/tone. */
+.th-meaning{display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;max-width:92%;margin-top:12px;padding:7px 14px;border-radius:999px;border:1.4px dashed var(--line);background:transparent;color:var(--ink-faint);font-family:var(--body);font-weight:700;font-size:.84rem;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.th-meaning:hover{border-color:var(--bamboo);color:var(--bamboo-deep)}
+.th-meaning:focus-visible{outline:2px solid var(--bamboo);outline-offset:2px}
+.th-meaning .thm-prompt{display:inline-flex;align-items:center;gap:5px}
+.th-meaning .thm-text{display:none}
+.th-meaning[data-shown="1"]{border-style:solid;border-color:var(--line);background:var(--bamboo-tint);color:var(--bamboo-deep);cursor:default}
+.th-meaning[data-shown="1"]:hover{border-color:var(--line)}
+.th-meaning[data-shown="1"] .thm-prompt{display:none}
+.th-meaning[data-shown="1"] .thm-text{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:4px 12px}
+.thm-text .ln{display:inline-flex;align-items:baseline;gap:5px}
+.thm-text .ln .fl{font-size:.6rem;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--ink-faint)}
+.thm-text .ln em{font-style:normal;font-weight:700;color:var(--bamboo-deep)}
+
+.th-tones{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.th-tone{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:1.6px solid var(--line);background:var(--paper);border-radius:var(--r-md);padding:12px 4px 9px;cursor:pointer;transition:transform .12s,border-color .15s,background .15s;font-family:var(--body)}
+.th-tone:hover:not(:disabled){border-color:var(--bamboo);transform:translateY(-2px)}
+.th-tone .tm{font-family:var(--han);font-size:1.9rem;font-weight:800;line-height:1;color:var(--ink)}
+.th-tone .tl{font-size:.6rem;font-weight:800;letter-spacing:.3px;text-transform:uppercase;color:var(--ink-faint)}
+.th-tone:disabled{cursor:default}
+.th-tone.correct{background:var(--familiar);border-color:var(--familiar)}
+.th-tone.correct .tm,.th-tone.correct .tl{color:#fff}
+.th-tone.wrong{background:var(--seal);border-color:var(--seal);animation:thShake .4s}
+.th-tone.wrong .tm,.th-tone.wrong .tl{color:#fff}
+@keyframes thShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+.th-done{text-align:center;background:var(--cloud);border:1.5px solid var(--line);border-radius:var(--r-lg);padding:22px 18px;box-shadow:var(--shadow-sm)}
+.th-done .th-mascot{display:flex;justify-content:center;margin-bottom:6px}
+.th-done h2{font-family:var(--display);font-weight:800;margin:4px 0 2px}
+.th-done p{margin:0 0 8px;color:var(--ink-soft);font-weight:600}
+.th-done .th-stats{display:flex;justify-content:center;gap:24px;margin:12px 0}
+.th-done .th-stats .n{font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--bamboo-deep)}
+.th-done .th-stats .l{font-size:.72rem;color:var(--ink-soft);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.th-xp{display:inline-block;background:var(--gold);color:#fff;font-weight:800;padding:6px 16px;border-radius:999px;margin-top:4px}
+
+/* Tone Hero combo / score / best */
+.th-stage{position:relative}
+.th-pill.th-score b{color:var(--bamboo-deep)}
+.th-pill.th-combo{transition:transform .14s,background .2s,border-color .2s,color .2s,opacity .2s}
+.th-pill.th-combo b{color:var(--bamboo-deep)}
+.th-pill.th-combo[data-mult="1"]{opacity:.6}
+.th-pill.th-combo[data-mult="2"]{background:#fff3df;border-color:var(--gold);color:var(--gold-deep)}
+.th-pill.th-combo[data-mult="2"] b{color:var(--gold-deep)}
+.th-pill.th-combo[data-mult="3"]{background:#ffe9cc;border-color:#e3811c;color:#b5610f}
+.th-pill.th-combo[data-mult="3"] b{color:#b5610f}
+.th-pill.th-combo[data-mult="4"]{background:#ffd6bd;border-color:#d2691e;color:#94410d}
+.th-pill.th-combo[data-mult="4"] b{color:#94410d}
+.th-pill.th-combo[data-mult="5"]{background:linear-gradient(120deg,#ffb347,#ff7a45);border-color:#e3811c;color:#fff;box-shadow:0 2px 10px rgba(227,129,28,.4)}
+.th-pill.th-combo[data-mult="5"] b{color:#fff}
+.th-combo.bump{animation:thBump .34s cubic-bezier(.34,1.56,.64,1)}
+@keyframes thBump{0%{transform:scale(1)}38%{transform:scale(1.22)}100%{transform:scale(1)}}
+.th-pop{position:absolute;top:8px;right:12px;font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--gold-deep);opacity:0;pointer-events:none}
+.th-pop.go{animation:thPop .8s ease-out}
+@keyframes thPop{0%{opacity:0;transform:translateY(6px) scale(.9)}25%{opacity:1;transform:translateY(-2px) scale(1.05)}100%{opacity:0;transform:translateY(-22px) scale(1)}}
+.th-setup-best{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--bamboo-tint);border-radius:999px;padding:6px 12px;font-size:.82rem;font-weight:800;color:var(--bamboo-deep);margin:-2px 0 14px}
+.th-best{display:inline-block;margin-top:8px;color:var(--gold-deep);font-weight:800;font-size:.9rem}
+
+/* scope lock: dim level/course pickers while a game is in progress */
+.levels.locked,.dsbar.locked{opacity:.5}
+.levels.locked .lm-trigger{cursor:not-allowed}
 </style>
 </head>
 <body data-mood="idle">
@@ -687,8 +787,31 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
 
   <!-- ===== GAMES / MEMORY MATCH ===== -->
   <section class="view" id="view-games">
+    <div id="gamesHub" class="games-hub">
+      <h2>🎮 Games</h2>
+      <p class="sub">Pick a way to play with this scope's words.</p>
+      <button class="game-card" id="gameCardMM">
+        <span class="gc-ic">🀄</span>
+        <span class="gc-body">
+          <span class="gc-title">Memory Match</span>
+          <span class="gc-desc">Flip the tiles and pair each word with its match.</span>
+        </span>
+        <span class="gc-go" aria-hidden="true">→</span>
+      </button>
+      <button class="game-card" id="gameCardTH">
+        <span class="gc-ic" id="gameCardTHIc">🎵</span>
+        <span class="gc-body">
+          <span class="gc-title">Tone Hero <span class="gc-tag">new</span></span>
+          <span class="gc-desc">See the character and toneless pinyin — tap its tone.</span>
+        </span>
+        <span class="gc-go" aria-hidden="true">→</span>
+      </button>
+    </div>
+
+    <div id="mmWrap" style="display:none">
     <div id="mmSetup">
       <div class="mm-setup">
+        <button class="g-back" id="mmBackBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"/></svg>Back to games list</button>
         <h2>🀄 Memory Match</h2>
         <p class="sub">Flip the tiles and pair each word with its match.</p>
         <div class="mm-scope" id="mmScope">📚 HSK 1</div>
@@ -721,6 +844,7 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
           </div>
         </div>
 
+        <div class="th-setup-best" id="mmSetupBest" style="display:none">🏅 Best this scope: <span id="mmSetupBestVal">—</span></div>
         <button class="btn btn-primary" id="mmStartBtn" style="width:100%">Start matching</button>
       </div>
     </div>
@@ -736,6 +860,7 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
     </div>
 
     <div id="mmDone" style="display:none">
+      <button class="g-back" id="mmDoneBackBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"/></svg>Back to games list</button>
       <div class="mm-done">
         <div class="mm-mascot" id="mmMascot"></div>
         <h2 id="mmDoneTitle">Board cleared!</h2>
@@ -753,6 +878,62 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
         <button class="btn btn-primary" id="mmAgainBtn">Play again</button>
       </div>
     </div>
+    </div><!-- /mmWrap -->
+
+    <div id="thWrap" style="display:none">
+    <div id="thSetup">
+      <div class="th-setup">
+        <button class="g-back" id="thBackBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"/></svg>Back to games list</button>
+        <h2>🎵 Tone Hero</h2>
+        <p class="sub">A character appears with toneless pinyin — tap the tone you hear in your head.</p>
+        <div class="th-scope" id="thScope">📚 HSK 1</div>
+        <div class="th-legend">
+          <span><b>ā</b> 1st</span><span><b>á</b> 2nd</span><span><b>ǎ</b> 3rd</span><span><b>à</b> 4th</span><span><b>a</b> neutral</span>
+        </div>
+        <div class="th-hint" id="thHint"></div>
+        <div class="th-setup-best" id="thSetupBest" style="display:none">🏅 Best this scope: <span id="thSetupBestVal">—</span></div>
+        <button class="btn btn-primary" id="thStartBtn" style="width:100%">Start · 12 questions</button>
+      </div>
+    </div>
+
+    <div id="thPlay" style="display:none">
+      <div class="th-meta">
+        <div class="th-pill">Question <b><span id="thQNum">1</span>/<span id="thQTotal">12</span></b></div>
+        <div class="th-pill th-score">Score <b id="thScore">0</b></div>
+        <div class="th-pill th-combo" id="thCombo" data-mult="1">Combo <b id="thMult">×1</b></div>
+      </div>
+      <div class="th-progress"><i id="thBar" style="width:0%"></i></div>
+      <div class="th-stage">
+        <div class="th-pop" id="thPop"></div>
+        <div class="th-char" id="thChar">字</div>
+        <div class="th-pin" id="thPin">zi</div>
+        <button class="th-meaning" id="thMeaning" type="button" aria-expanded="false"><span class="thm-prompt">💡 Tap for meaning</span><span class="thm-text" id="thMeaningText"></span></button>
+        <div class="th-reveal" id="thReveal"></div>
+      </div>
+      <div class="th-tones" id="thTones"></div>
+      <div class="controls" style="margin-top:14px"><button class="btn btn-ghost btn-sm" id="thQuitBtn">Quit game</button></div>
+    </div>
+
+    <div id="thDone" style="display:none">
+      <button class="g-back" id="thDoneBackBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"/></svg>Back to games list</button>
+      <div class="th-done">
+        <div class="th-mascot" id="thMascot"></div>
+        <h2 id="thDoneTitle">Run complete!</h2>
+        <p id="thDoneSub">Nicely tuned.</p>
+        <div class="th-stats">
+          <div><div class="n" id="thDoneScore">0</div><div class="l">Score</div></div>
+          <div><div class="n" id="thDoneCombo">0</div><div class="l">Best combo</div></div>
+          <div><div class="n" id="thDoneAcc">0%</div><div class="l">Accuracy</div></div>
+        </div>
+        <div class="th-xp" id="thXp">+0 XP</div>
+        <div class="th-best" id="thBest" style="display:none">🏅 New best!</div>
+      </div>
+      <div class="controls">
+        <button class="btn btn-ghost" id="thChangeBtn">Change setup</button>
+        <button class="btn btn-primary" id="thAgainBtn">Play again</button>
+      </div>
+    </div>
+    </div><!-- /thWrap -->
   </section>
 
   <p class="note">Vocabulary: <b>HSK 1–3</b> · 1000 words. English meanings from the official lists; <b>Thai &amp; Japanese</b> are study aids.</p>
@@ -1141,6 +1322,14 @@ function toast(msg,kind){
 function setMood(m){document.body.setAttribute("data-mood",m);}
 function flashMood(m,back){setMood(m);setTimeout(function(){setMood(back||"idle");},1100);}
 
+/* scope lock — shared by games: dim & disable the level/course pickers while a game is in progress */
+function scopeLocked(){return (typeof mm!=="undefined"&&mm.playing)||(typeof th!=="undefined"&&th.playing);}
+function applyScopeLock(on){
+  var lv=$("#levels"),ds=$("#dsBar");
+  if(lv)lv.classList.toggle("locked",!!on);
+  if(ds)ds.classList.toggle("locked",!!on);
+}
+
 /* speech */
 var _voices=[];
 function _loadVoices(){try{_voices=window.speechSynthesis.getVoices()||[];}catch(e){_voices=[];}}
@@ -1185,6 +1374,18 @@ function buildStudyPool(mode){
 }
 function langs(){return acct().settings.langs;}
 function displayHan(w){if(!w)return "";return (acct().settings.script==="trad"&&w.t)?w.t:w.h;}
+/* Pinyin tone helpers (used by Tone Hero). Map each tone-marked vowel to [baseLetter, toneNumber]. */
+var TONE_CHARS={
+  "ā":["a",1],"á":["a",2],"ǎ":["a",3],"à":["a",4],
+  "ē":["e",1],"é":["e",2],"ě":["e",3],"è":["e",4],
+  "ī":["i",1],"í":["i",2],"ǐ":["i",3],"ì":["i",4],
+  "ō":["o",1],"ó":["o",2],"ǒ":["o",3],"ò":["o",4],
+  "ū":["u",1],"ú":["u",2],"ǔ":["u",3],"ù":["u",4],
+  "ǖ":["ü",1],"ǘ":["ü",2],"ǚ":["ü",3],"ǜ":["ü",4],
+  "ń":["n",2],"ň":["n",3],"ǹ":["n",4],"ḿ":["m",2]
+};
+function stripTone(p){if(!p)return "";var out="";for(var i=0;i<p.length;i++){var c=p[i];out+=TONE_CHARS[c]?TONE_CHARS[c][0]:c;}return out;}
+function pinyinTone(p){if(!p)return 5;for(var i=0;i<p.length;i++){var c=p[i];if(TONE_CHARS[c])return TONE_CHARS[c][1];}return 5;}
 function meaningLines(w){
   var L=langs();var out=[];
   if(L.en&&w.e)out.push({k:"en",t:w.e});
@@ -1688,7 +1889,7 @@ function renderGroupBar(){
   var trigEl=$("#lmTrigger"),pop=$("#lmPop");
   function closeMenu(){if(pop){pop.hidden=true;}if(trigEl){trigEl.setAttribute("aria-expanded","false");}}
   function openMenu(){if(pop){pop.hidden=false;}if(trigEl){trigEl.setAttribute("aria-expanded","true");}}
-  if(trigEl)trigEl.onclick=function(ev){ev.stopPropagation();(pop&&pop.hidden)?openMenu():closeMenu();};
+  if(trigEl)trigEl.onclick=function(ev){ev.stopPropagation();if(scopeLocked()){toast("Finish your game first 🎮");return;}(pop&&pop.hidden)?openMenu():closeMenu();};
   $$("#lmPop .lm-item").forEach(function(b){b.onclick=function(ev){
     ev.stopPropagation();setGroupKey(b.getAttribute("data-g"));saveDB();closeMenu();renderGroupBar();onGroupChange();
   };});
@@ -1697,7 +1898,7 @@ function renderGroupBar(){
     document.addEventListener("keydown",function(e){if(e.key==="Escape"){var p=document.getElementById("lmPop");if(p&&!p.hidden){p.hidden=true;var t=document.getElementById("lmTrigger");if(t)t.setAttribute("aria-expanded","false");}}});
   }
 }
-function onGroupChange(){buildStudyPool("reset");renderCard();updateDueCounts();renderBrowse();updateQuizSetupLabels();syncLangButtons();if(curView==="progress")renderProgress();if(curView==="games"&&!mm.playing)renderGames();}
+function onGroupChange(){buildStudyPool("reset");renderCard();updateDueCounts();renderBrowse();updateQuizSetupLabels();syncLangButtons();if(curView==="progress")renderProgress();if(curView==="games"&&!mm.playing&&!th.playing)renderGames();}
 function updateQuizSetupLabels(){$("#qPoolLevel").textContent=groupDisplay();updateDueCounts();}
 
 var curView="study";
@@ -1711,7 +1912,7 @@ function switchView(v){
   if(v==="progress")renderProgress();
   if(v==="browse")renderBrowse();
   if(v==="quiz"){updateQuizSetupLabels();}
-  if(v==="games")renderGames();
+  if(v==="games"){if(!mm.playing&&!th.playing)games.view="hub";renderGames();}
   if(v==="study")renderPanda();
   window.scrollTo(0,0);
 }
@@ -1916,20 +2117,61 @@ function mmValidate(){
       ? max+" words differ between 简 & 繁 in this scope."
       : (max<8?("Only "+max+" matching pairs in this scope."):"");
   }
+  // per-scope best (dataset + group + A-side + B-side + pair count) — matches mmFinish key
+  var a=acct();if(!a.mmBest)a.mmBest={};
+  var key=a.settings.dataset+":"+curGroupKey()+"|"+mm.a+"|"+mm.b+"|"+mm.n;
+  var b=a.mmBest[key],box=$("#mmSetupBest");
+  if(b){
+    box.style.display="";
+    $("#mmSetupBestVal").textContent=b.moves+" moves · "+b.time+"s";
+  }else{
+    box.style.display="none";
+  }
 }
 
+var games={view:"hub"}; // "hub" | "mm" | "th"
+function gamesShow(which){
+  games.view=which;
+  $("#gamesHub").style.display=which==="hub"?"":"none";
+  $("#mmWrap").style.display=which==="mm"?"":"none";
+  $("#thWrap").style.display=which==="th"?"":"none";
+}
 function renderGames(){
   $("#mmScope").textContent="📚 "+curDS().short+" · "+groupDisplay();
-  // wire setup controls (idempotent)
+  // Memory Match setup controls (idempotent)
   $$("#mmSideA button").forEach(function(b){b.onclick=function(){mm.a=b.getAttribute("data-a");if(mm.a==="trad"&&mm.b==="trad")mm.b="p";mmValidate();};});
   $$("#mmSideB button").forEach(function(b){b.onclick=function(){mm.b=b.getAttribute("data-b");if(mm.b==="trad")mm.a="simp";mmValidate();};});
   $$("#mmSize button").forEach(function(b){b.onclick=function(){var n=+b.getAttribute("data-n");if(mmMaxPairs()>=n){mm.n=n;mmValidate();}};});
   $("#mmStartBtn").onclick=mmStart;
   $("#mmQuitBtn").onclick=mmQuit;
   $("#mmAgainBtn").onclick=mmStart;
-  $("#mmChangeBtn").onclick=function(){mmShow("setup");};
-  mmValidate();
-  if(!mm.playing)mmShow("setup");
+  $("#mmChangeBtn").onclick=function(){mmShow("setup");mmValidate();};
+  $("#mmDoneBackBtn").onclick=function(){games.view="hub";renderGames();};
+  $("#mmBackBtn").onclick=function(){games.view="hub";renderGames();};
+  // Tone Hero controls (idempotent)
+  $("#thStartBtn").onclick=thStart;
+  $("#thQuitBtn").onclick=thQuit;
+  $("#thAgainBtn").onclick=thStart;
+  // tap the meaning hint to reveal the translation (one-way per question)
+  $("#thMeaning").onclick=function(){
+    if(this.getAttribute("data-shown")==="1")return;
+    this.setAttribute("data-shown","1");
+    this.setAttribute("aria-expanded","true");
+  };
+  $("#thBackBtn").onclick=function(){games.view="hub";renderGames();};
+  $("#thChangeBtn").onclick=function(){thShow("setup");thValidate();};
+  $("#thDoneBackBtn").onclick=function(){games.view="hub";renderGames();};
+  // Hub cards
+  $("#gameCardMM").onclick=function(){games.view="mm";renderGames();};
+  $("#gameCardTH").onclick=function(){games.view="th";renderGames();};
+  try{var st=stageFromGP(growthPoints(acct()).gp);$("#gameCardTHIc").innerHTML=pandaSVG(st,52);}catch(e){}
+
+  // Decide which panel to show
+  if(mm.playing){gamesShow("mm");return;}
+  if(th.playing){gamesShow("th");return;}
+  if(games.view==="mm"){gamesShow("mm");mmValidate();mmShow("setup");}
+  else if(games.view==="th"){gamesShow("th");thValidate();thShow("setup");}
+  else{gamesShow("hub");}
 }
 function mmShow(which){
   $("#mmSetup").style.display=which==="setup"?"":"none";
@@ -1954,6 +2196,7 @@ function mmStart(){
   // Sun (Set A) fills the upper rows, Moon (Set B) the lower rows; shuffle within each zone
   mm.deck=shuffle(aTiles).concat(shuffle(bTiles));
   mm.first=null;mm.lock=false;mm.moves=0;mm.found=0;mm.playing=true;
+  applyScopeLock(true);
   mm.t0=Date.now();
   if(mm.timer)clearInterval(mm.timer);
   mm.timer=setInterval(mmTick,1000);
@@ -2003,6 +2246,7 @@ function mmFlip(i,el){
 
 function mmFinish(){
   mm.playing=false;if(mm.timer){clearInterval(mm.timer);mm.timer=null;}
+  applyScopeLock(false);
   var secs=Math.round((Date.now()-mm.t0)/1000);
   var acc=mm.moves?Math.round(mm.found/mm.moves*100):100;
   var xp=mm.total*3+Math.round((mm.moves?mm.found/mm.moves:1)*mm.total*2);
@@ -2023,14 +2267,216 @@ function mmFinish(){
   $("#mmDoneTime").textContent=secs+"s";
   $("#mmDoneAcc").textContent=acc+"%";
   $("#mmXp").textContent="+"+xp+" XP";
-  $("#mmBest").style.display=isBest?"inline-block":"none";
+  var mmBestEl=$("#mmBest");
+  if(isBest){mmBestEl.style.display="inline-block";mmBestEl.textContent="🏅 New best: "+mm.moves+" moves · "+secs+"s";}
+  else{mmBestEl.style.display="inline-block";mmBestEl.textContent="🏅 Best: "+prev.moves+" moves · "+prev.time+"s";}
   flashMood("happy");
   updateChip();
   mmShow("done");window.scrollTo(0,0);
 }
 function mmQuit(){
   mm.playing=false;if(mm.timer){clearInterval(mm.timer);mm.timer=null;}
+  applyScopeLock(false);
   setMood("idle");mmShow("setup");mmValidate();
+}
+
+/* ===================== TONE HERO (Games) ===================== */
+var th={playing:false,queue:[],idx:0,correct:0,answered:0,total:12,locked:false,scopeKey:"",score:0,streak:0,bestStreak:0,mult:1};
+var TH_RUN=12; // fixed run length
+var TH_BASE=10; // base points per correct answer
+// streak → multiplier tiers (climbs on consecutive correct, resets on a miss)
+function thMult(streak){
+  if(streak>=8)return 5;
+  if(streak>=6)return 4;
+  if(streak>=4)return 3;
+  if(streak>=2)return 2;
+  return 1;
+}
+// best record keyed dataset + group + run length (mirrors Memory Match scoping)
+function thBestKey(total){return acct().settings.dataset+":"+curGroupKey()+"|"+(total||TH_RUN);}
+
+// reference vowel faces for each tone button
+var TH_TONES=[
+  {t:1,face:"ā",label:"1st"},
+  {t:2,face:"á",label:"2nd"},
+  {t:3,face:"ǎ",label:"3rd"},
+  {t:4,face:"à",label:"4th"},
+  {t:5,face:"a",label:"neutral"}
+];
+
+function thPool(){
+  // single-syllable words only (one Hanzi character)
+  return currentLevelWords().filter(function(w){
+    return w&&w.h&&w.h.length===1&&w.p;
+  });
+}
+function thBuildQueue(n){
+  var pool=shuffle(thPool());
+  if(!pool.length)return [];
+  var q=pool.slice(0,n);
+  // if the scope has fewer than n single-syllable words, top up with repeats
+  var i=0;
+  while(q.length<n){q.push(pool[i%pool.length]);i++;}
+  return shuffle(q);
+}
+function thShow(which){
+  $("#thSetup").style.display=which==="setup"?"":"none";
+  $("#thPlay").style.display=which==="play"?"":"none";
+  $("#thDone").style.display=which==="done"?"":"none";
+}
+function thValidate(){
+  $("#thScope").textContent="📚 "+curDS().short+" · "+groupDisplay();
+  var n=thPool().length,hint=$("#thHint"),start=$("#thStartBtn");
+  if(n<4){
+    hint.textContent="Not enough single-character words in this scope — try another level.";
+    start.disabled=true;
+  }else{
+    start.disabled=false;
+    hint.textContent=(n<TH_RUN)?("Only "+n+" single-character words here — some may repeat."):"";
+  }
+  // per-scope best (dataset + group + run length)
+  var a=acct();if(!a.thBest)a.thBest={};
+  var b=a.thBest[thBestKey(TH_RUN)],box=$("#thSetupBest");
+  if(b&&b.score>0){
+    box.style.display="";
+    $("#thSetupBestVal").textContent=b.score+" pts · ×"+b.streak+" combo";
+  }else{
+    box.style.display="none";
+  }
+}
+function thStart(){
+  var q=thBuildQueue(TH_RUN);
+  if(q.length<4){thShow("setup");thValidate();return;}
+  th.queue=q;th.total=q.length;
+  th.idx=0;th.correct=0;th.answered=0;th.locked=false;th.playing=true;
+  th.score=0;th.streak=0;th.bestStreak=0;th.mult=1;
+  th.scopeKey=acct().settings.dataset+":"+curGroupKey();
+  applyScopeLock(true);
+  $("#thQTotal").textContent=th.total;
+  $("#thScore").textContent="0";
+  thSetCombo();
+  thShow("play");setMood("think");window.scrollTo(0,0);
+  thRenderQuestion();
+}
+function thSetCombo(){
+  var pill=$("#thCombo");
+  pill.setAttribute("data-mult",th.mult);
+  $("#thMult").textContent="×"+th.mult;
+}
+function thRenderQuestion(){
+  th.locked=false;
+  var w=th.queue[th.idx];
+  $("#thQNum").textContent=(th.idx+1);
+  $("#thScore").textContent=th.score;
+  thSetCombo();
+  $("#thBar").style.width=(th.idx/th.total*100)+"%";
+  $("#thChar").innerHTML=escName(displayHan(w));
+  $("#thPin").textContent=stripTone(w.p);
+  // optional meaning hint — translation only (no pinyin/tone), reset to hidden each question
+  var mh=$("#thMeaning");
+  if(mh){
+    $("#thMeaningText").innerHTML=meaningLines(w).map(function(o){
+      var lbl=o.k==="en"?"EN":o.k==="th"?"ไทย":"日本語";
+      return '<span class="ln"><span class="fl">'+lbl+'</span><em>'+escName(o.t)+'</em></span>';
+    }).join("");
+    mh.setAttribute("data-shown","0");
+    mh.setAttribute("aria-expanded","false");
+  }
+  var rev=$("#thReveal");rev.textContent="";rev.className="th-reveal";
+  $("#thTones").innerHTML=TH_TONES.map(function(o){
+    return '<button class="th-tone" data-tone="'+o.t+'" aria-label="Tone '+o.label+'">'
+      +'<span class="tm">'+o.face+'</span><span class="tl">'+o.label+'</span></button>';
+  }).join("");
+  $$("#thTones .th-tone").forEach(function(el){
+    el.onclick=function(){thAnswer(+el.getAttribute("data-tone"),el);};
+  });
+}
+function thAnswer(tone,btn){
+  if(th.locked)return;th.locked=true;
+  var w=th.queue[th.idx];
+  var ans=pinyinTone(w.p);
+  th.answered++;
+  var ok=(tone===ans);
+  $$("#thTones .th-tone").forEach(function(b){b.disabled=true;});
+  var rev=$("#thReveal");
+  if(ok){
+    btn.classList.add("correct");th.correct++;
+    // combo climbs, multiplier follows, score accrues
+    th.streak++;
+    if(th.streak>th.bestStreak)th.bestStreak=th.streak;
+    th.mult=thMult(th.streak);
+    var pts=TH_BASE*th.mult;
+    th.score+=pts;
+    $("#thScore").textContent=th.score;
+    thSetCombo();
+    var pill=$("#thCombo");pill.classList.remove("bump");void pill.offsetWidth;pill.classList.add("bump");
+    thPop("+"+pts);
+    rev.textContent=w.p;rev.className="th-reveal ok";
+    flashMood("happy");
+  }else{
+    btn.classList.add("wrong");
+    // miss resets the streak and multiplier
+    th.streak=0;th.mult=1;thSetCombo();
+    $$("#thTones .th-tone").forEach(function(b){if(+b.getAttribute("data-tone")===ans)b.classList.add("correct");});
+    rev.textContent=w.p;rev.className="th-reveal no";
+    flashMood("sad");
+  }
+  setTimeout(thNext,ok?760:1280);
+}
+function thPop(txt){
+  var p=$("#thPop");if(!p)return;
+  p.textContent=txt;p.classList.remove("go");void p.offsetWidth;p.classList.add("go");
+}
+function thNext(){
+  th.idx++;
+  $("#thBar").style.width=(th.idx/th.total*100)+"%";
+  if(th.idx>=th.total){thFinish();return;}
+  thRenderQuestion();
+}
+function thFinish(){
+  th.playing=false;
+  applyScopeLock(false);
+  var acc=th.total?Math.round(th.correct/th.total*100):0;
+  var perfect=(th.correct===th.total);
+  var xp=th.correct*4+(perfect?8:0);
+  // per-scope best score (dataset + group + run length); higher score wins, tie-break on combo
+  var a=acct();if(!a.thBest)a.thBest={};
+  var key=th.scopeKey+"|"+th.total;
+  var prev=a.thBest[key],improved=false;
+  if(!prev||th.score>prev.score||(th.score===prev.score&&th.bestStreak>prev.streak)){
+    a.thBest[key]={score:th.score,streak:th.bestStreak};improved=true;
+  }
+  var isBest=improved&&th.score>0;
+  touchDay();
+  awardXP(xp,"Tone Hero · "+th.correct+"/"+th.total+" · "+th.score+"pts","game");
+  saveDB();
+  var stage=stageFromGP(growthPoints(acct()).gp);
+  $("#thMascot").innerHTML=pandaSVG(stage,96);
+  var title,sub;
+  if(perfect){title="Perfect pitch! 🎶";sub="Every tone nailed — incredible ear.";}
+  else if(acc>=80){title="Sharp ear! 🎵";sub="You really hear the tones.";}
+  else if(acc>=50){title="Run complete!";sub="Tones are clicking into place.";}
+  else{title="Keep tuning!";sub="Every run trains your ear a little more.";}
+  $("#thDoneTitle").textContent=title;
+  $("#thDoneSub").textContent=sub;
+  $("#thDoneScore").textContent=th.score;
+  $("#thDoneCombo").textContent="×"+th.bestStreak;
+  $("#thDoneAcc").textContent=acc+"%";
+  $("#thXp").textContent="+"+xp+" XP";
+  var bestEl=$("#thBest");
+  if(isBest){bestEl.style.display="inline-block";bestEl.textContent="🏅 New best: "+th.score+" pts";}
+  else{
+    bestEl.style.display="inline-block";bestEl.textContent="🏅 Best: "+prev.score+" pts · ×"+prev.streak+" combo";
+  }
+  flashMood(acc>=50?"happy":"sad");
+  flashGrowthMaybe();
+  updateChip();
+  thShow("done");window.scrollTo(0,0);
+}
+function thQuit(){
+  th.playing=false;
+  applyScopeLock(false);
+  setMood("idle");thShow("setup");thValidate();
 }
 
 init();
