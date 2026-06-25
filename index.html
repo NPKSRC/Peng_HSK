@@ -130,6 +130,61 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
 }
 .speech{text-align:center;font-family:var(--display);font-weight:700;color:var(--ink-soft);min-height:1.4em;margin:2px 0 12px;font-size:1rem}
 
+/* ---------- Manga speech balloons (Bao talks) — sit BESIDE the mascot ---------- */
+.bao-bubble{
+  --bb:var(--bamboo);
+  position:absolute;z-index:40;pointer-events:none;top:50%;
+  background:var(--cloud);border:2px solid var(--bb);border-radius:15px;
+  padding:6px 12px 7px;max-width:min(44vw,170px);
+  box-shadow:0 7px 18px rgba(28,43,41,.16);
+  text-align:center;line-height:1.05;
+  animation:bao-pop .42s cubic-bezier(.34,1.5,.5,1) both;
+}
+.bao-bubble .bb-h{display:block;font-family:var(--han);font-weight:700;font-size:1.14rem;color:var(--ink)}
+.bao-bubble .bb-p{display:block;font-family:var(--display);font-weight:700;font-size:.62rem;color:var(--ink-soft);margin-top:1px;letter-spacing:.3px}
+/* study buddy hugs the right edge → roomy space to the left over the action buttons */
+#pandaStudy .bao-bubble{max-width:min(58vw,205px)}
+/* quiz buddy is centred → keep within the side gaps so it never runs off-screen */
+#pandaQuiz .bao-bubble{max-width:min(38vw,140px)}
+/* LEFT of mascot — tail on the right, pointing right toward Bao */
+.bao-left{right:calc(100% + 12px);transform:translateY(-50%);transform-origin:112% 50%}
+.bao-left::after{content:"";position:absolute;top:50%;left:100%;transform:translateY(-50%);
+  border:9px solid transparent;border-left-color:var(--bb);border-right:0}
+.bao-left::before{content:"";position:absolute;top:50%;left:100%;margin-left:-2.5px;transform:translateY(-50%);
+  border:7px solid transparent;border-left-color:var(--cloud);border-right:0;z-index:1}
+/* RIGHT of mascot — tail on the left, pointing left toward Bao */
+.bao-right{left:calc(100% + 12px);transform:translateY(-50%);transform-origin:-12% 50%}
+.bao-right::after{content:"";position:absolute;top:50%;right:100%;transform:translateY(-50%);
+  border:9px solid transparent;border-right-color:var(--bb);border-left:0}
+.bao-right::before{content:"";position:absolute;top:50%;right:100%;margin-right:-2.5px;transform:translateY(-50%);
+  border:7px solid transparent;border-right-color:var(--cloud);border-left:0;z-index:1}
+/* mood accents */
+.bao-correct{--bb:var(--bamboo)}
+.bao-wrong{--bb:var(--seal)}
+.bao-struggle{--bb:var(--gold)}
+.bao-think{--bb:var(--ink-faint)}
+.bao-idle{--bb:var(--gold)}
+.bao-grow,.bao-done{--bb:var(--gold)}
+/* idle "thought" look — softer dashed border + muted text */
+.bao-idle{border-style:dashed}
+.bao-idle .bb-h{color:var(--ink-soft)}
+/* excited "shout" pop for praise / growth */
+.bao-burst{animation:bao-burst .52s cubic-bezier(.34,1.7,.5,1) both}
+.bao-correct.bao-burst{filter:drop-shadow(0 0 7px rgba(31,122,107,.4))}
+.bao-grow.bao-burst,.bao-done.bao-burst{filter:drop-shadow(0 0 7px rgba(217,154,58,.45))}
+/* exit */
+.bao-bubble.out{animation:bao-out .26s ease forwards}
+@keyframes bao-pop{0%{opacity:0;transform:translateY(-50%) scale(.25)}100%{opacity:1;transform:translateY(-50%) scale(1)}}
+@keyframes bao-burst{0%{opacity:0;transform:translateY(-50%) scale(.2) rotate(-5deg)}55%{opacity:1;transform:translateY(-50%) scale(1.07) rotate(2deg)}76%{transform:translateY(-50%) scale(.97) rotate(-1deg)}100%{transform:translateY(-50%) scale(1) rotate(0)}}
+@keyframes bao-out{to{opacity:0;transform:translateY(-50%) scale(.9)}}
+@media (prefers-reduced-motion:reduce){
+  .bao-bubble,.bao-burst{animation:bao-fade .2s ease both!important}
+  .bao-bubble.out{animation:bao-out-fade .2s ease forwards!important}
+  .bao-correct.bao-burst,.bao-grow.bao-burst,.bao-done.bao-burst{filter:none}
+}
+@keyframes bao-fade{from{opacity:0}to{opacity:1}}
+@keyframes bao-out-fade{to{opacity:0}}
+
 /* ---------- Flashcard ---------- */
 .card-wrap{perspective:1400px;margin-bottom:14px;touch-action:pan-y;-webkit-user-select:none;user-select:none}
 .card{position:relative;width:100%;height:362px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,.2,.2,1)}
@@ -1463,7 +1518,7 @@ function touchDay(){
 var lastStage=null;
 function flashGrowthMaybe(){
   var g=growthPoints(acct());var st=stageFromGP(g.gp);
-  if(lastStage!==null&&st>lastStage){var bn=buddyName((acct()&&acct().emoji)||"🐼");var who=(bn==="Bao")?"Bao":("Your "+bn);toast("🌱 "+who+" grew into "+STAGES[st-1].name+"!","grow");}
+  if(lastStage!==null&&st>lastStage){var bn=buddyName((acct()&&acct().emoji)||"🐼");var who=(bn==="Bao")?"Bao":("Your "+bn);toast("🌱 "+who+" grew into "+STAGES[st-1].name+"!","grow");baoSay("grow");}
   lastStage=st;
 }
 
@@ -1594,7 +1649,7 @@ function bindCardExtras(){
   var sp=$("#cardSpk");if(sp)sp.onclick=function(ev){ev.stopPropagation();speak(study.pool[study.idx].h);};
   var spf=$("#cardSpkFront");if(spf)spf.onclick=function(ev){ev.stopPropagation();speak(study.pool[study.idx].h);};
 }
-function flipCard(){study.flipped=!study.flipped;if(study.flipped)setMood("think");else setMood("idle");renderCard();}
+function flipCard(){study.flipped=!study.flipped;if(study.flipped){setMood("think");if(Math.random()<0.3)baoSay("think",$("#pandaStudy"),{placement:"left"});}else setMood("idle");renderCard();}
 function gotoCard(n,dir){
   var card=$("#card");
   if(dir){card.classList.add(dir==="next"?"fly-left":"fly-right");
@@ -1607,10 +1662,11 @@ function rateAndAdvance(rating){
   var w=study.pool[study.idx];rateCard(w.id,rating);
   if(rating==="good"||rating==="easy")flashMood("happy");
   var ok=rating==="good"||rating==="easy";
+  baoSay(ok?"correct":"struggle",$("#pandaStudy"),{placement:"left"});
   toast((ok?"👍 ":"")+ "+"+({again:2,hard:3,good:5,easy:6}[rating])+" XP","xp");
   updateDueCounts();
   if(study.idx<study.pool.length-1)gotoCard(study.idx+1,"next");
-  else{study.flipped=false;renderCard();toast("Deck complete! 🎉");}
+  else{study.flipped=false;renderCard();toast("Deck complete! 🎉");baoSay("done",$("#pandaStudy"),{placement:"left"});}
 }
 function updateDueCounts(){
   var a=acct();var dueAll=currentLevelWords().filter(function(w){return isDue(a.cards[w.id]);}).length;
@@ -1766,6 +1822,7 @@ function answer(btn,ok){
   recordQuiz(q.w.id,ok);
   if(ok){btn.classList.add("correct");quiz.score++;awardXP(10,null,"quiz");$("#quizStamp").className="stamp show";flashMood("happy");}
   else{btn.classList.add("wrong");awardXP(2,null,"quiz");quiz.missed.push(q.w);flashMood("sad");}
+  baoSay(ok?"correct":"wrong",$("#pandaQuiz"));
   if(!ok){
     // mark the correct button
     $$("#answers .answer").forEach(function(b){
@@ -2003,6 +2060,100 @@ function wireMascotTap(){
     if(e.target&&e.target.classList)e.target.classList.remove("tap-wiggle","tap-jump","tap-squish");
   });
 }
+/* ---------- Manga speech balloons: Bao reacts in short Chinese ---------- */
+var BAO_LINES={
+  correct:[
+    {h:"太棒了！",p:"tài bàng le"},{h:"答对了！",p:"dá duì le"},
+    {h:"真厉害！",p:"zhēn lìhai"},{h:"好极了！",p:"hǎo jí le"},
+    {h:"你真聪明！",p:"nǐ zhēn cōngmíng"},{h:"没问题！",p:"méi wèntí"},
+    {h:"对了！",p:"duì le"},{h:"完全正确！",p:"wánquán zhèngquè"}
+  ],
+  struggle:[ /* study: rated Hard / Again */
+    {h:"加油！",p:"jiāyóu"},{h:"慢慢来！",p:"màn man lái"},
+    {h:"快记住了！",p:"kuài jìzhù le"},{h:"再想想！",p:"zài xiǎngxiang"},
+    {h:"别着急！",p:"bié zháojí"}
+  ],
+  wrong:[
+    {h:"没关系！",p:"méi guānxi"},{h:"别灰心！",p:"bié huīxīn"},
+    {h:"再试试！",p:"zài shìshi"},{h:"下次会对的！",p:"xià cì huì duì de"},
+    {h:"别放弃！",p:"bié fàngqì"}
+  ],
+  think:[
+    {h:"想一想…",p:"xiǎng yi xiǎng"},{h:"是哪个呢？",p:"shì nǎ ge ne"},
+    {h:"让我看看…",p:"ràng wǒ kànkan"},{h:"嗯…",p:"ng…"}
+  ],
+  idle:[
+    {h:"你好！",p:"nǐ hǎo"},{h:"一起学习吧！",p:"yìqǐ xuéxí ba"},
+    {h:"继续加油！",p:"jìxù jiāyóu"},{h:"你今天真棒！",p:"nǐ jīntiān zhēn bàng"},
+    {h:"别偷懒哦~",p:"bié tōulǎn o"},{h:"我等着你呢！",p:"wǒ děng zhe nǐ ne"}
+  ],
+  grow:[
+    {h:"我长大了！",p:"wǒ zhǎng dà le"},{h:"谢谢你！",p:"xièxie nǐ"}
+  ],
+  done:[
+    {h:"全部完成！",p:"quánbù wánchéng"},{h:"太厉害了！",p:"tài lìhai le"}
+  ]
+};
+var _baoLast={},_baoBubblesOff=false;
+function _baoPick(type){
+  var pool=BAO_LINES[type]||BAO_LINES.idle;
+  if(pool.length<2)return pool[0];
+  var i;do{i=Math.floor(Math.random()*pool.length);}while(i===_baoLast[type]);
+  _baoLast[type]=i;return pool[i];
+}
+function _baoBurst(type){return type==="correct"||type==="grow"||type==="done";}
+/* alternate quiz/centre buddies between the free space on each side */
+var _baoFlip=false;
+function _baoAutoPlace(box){
+  if(box&&box.id==="pandaStudy")return "left";   /* study buddy hugs the right edge → open left */
+  _baoFlip=!_baoFlip;return _baoFlip?"right":"left";
+}
+/* show a balloon beside a mascot container. opts:{placement:'left'|'right',line,hold} */
+function baoSay(type,box,opts){
+  if(_baoBubblesOff)return;
+  opts=opts||{};
+  box=box||_baoActiveBox();
+  if(!box||!box.querySelector||!box.querySelector(".mascot"))return;
+  var line=opts.line||_baoPick(type);
+  var place=opts.placement||_baoAutoPlace(box);
+  var hanzi=line.h;
+  if(type==="idle")hanzi=hanzi.replace(/[！!~。.]+$/,"")+"…";   /* musing, thought-like */
+  var old=box.querySelector(".bao-bubble");if(old)old.remove();
+  try{if(getComputedStyle(box).position==="static")box.style.position="relative";}catch(e){box.style.position="relative";}
+  var b=document.createElement("div");
+  b.className="bao-bubble bao-"+type+" bao-"+place+(_baoBurst(type)?" bao-burst":"");
+  b.innerHTML='<span class="bb-h">'+hanzi+'</span><span class="bb-p">'+line.p+'</span>';
+  box.appendChild(b);
+  var hold=opts.hold||(line.h.length>4?2200:1700);
+  b._t=setTimeout(function(){b.classList.add("out");setTimeout(function(){if(b.parentNode)b.remove();},260);},hold);
+}
+/* mascot container for the current view (Study side-buddy, or Quiz buddy mid-play) */
+function _baoActiveBox(){
+  var v=document.querySelector(".view.active");if(!v)return null;
+  if(v.id==="view-study"){var p=$("#pandaStudy");return (p&&p.querySelector(".mascot"))?p:null;}
+  if(v.id==="view-quiz"){var qp=$("#quizPlay");if(qp&&qp.style.display!=="none"){var q=$("#pandaQuiz");return (q&&q.querySelector(".mascot"))?q:null;}}
+  return null;
+}
+/* idle chatter: random phrase at a random 15–20s interval while a buddy is on screen */
+var _baoIdleTimer=null;
+function _baoIdleGap(){return 15000+Math.floor(Math.random()*5000);}
+function _baoArmIdle(){
+  clearTimeout(_baoIdleTimer);
+  _baoIdleTimer=setTimeout(function(){
+    if(!document.hidden){
+      var box=_baoActiveBox();
+      if(box&&!box.querySelector(".bao-bubble"))baoSay("idle",box);
+    }
+    _baoArmIdle(); /* keep gently musing through long idles */
+  },_baoIdleGap());
+}
+function _baoInitIdle(){
+  ["pointerdown","keydown","touchstart"].forEach(function(ev){
+    document.addEventListener(ev,_baoArmIdle,{passive:true});
+  });
+  _baoArmIdle();
+}
+
 function langAvail(){
   var avail={en:true,th:false,ja:false};
   try{var ws=currentLevelWords();for(var i=0;i<ws.length;i++){if(ws[i].th)avail.th=true;if(ws[i].ja)avail.ja=true;if(avail.th&&avail.ja)break;}}
@@ -2227,6 +2378,7 @@ function init(){
   $("#importBtn").onclick=doImport;
   wireLanding();
   wireMascotTap();
+  _baoInitIdle();
 }
 /* ===================== MEMORY MATCH (Games) ===================== */
 var mm={a:"simp",b:"p",n:6,playing:false,deck:[],first:null,lock:false,
