@@ -133,9 +133,9 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
 /* ---------- Manga speech balloons (Bao talks) — sit BESIDE the mascot ---------- */
 .bao-bubble{
   --bb:var(--bamboo);
-  position:absolute;z-index:40;pointer-events:none;top:50%;
+  position:absolute;z-index:90;pointer-events:none;top:50%;white-space:nowrap;
   background:var(--cloud);border:2px solid var(--bb);border-radius:15px;
-  padding:6px 12px 7px;max-width:min(44vw,170px);
+  padding:6px 12px 7px;max-width:92vw;
   box-shadow:0 7px 18px rgba(28,43,41,.16);
   text-align:center;line-height:1.05;
   animation:bao-pop .42s cubic-bezier(.34,1.5,.5,1) both;
@@ -143,9 +143,9 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
 .bao-bubble .bb-h{display:block;font-family:var(--han);font-weight:700;font-size:1.14rem;color:var(--ink)}
 .bao-bubble .bb-p{display:block;font-family:var(--display);font-weight:700;font-size:.62rem;color:var(--ink-soft);margin-top:1px;letter-spacing:.3px}
 /* study buddy hugs the right edge → roomy space to the left over the action buttons */
-#pandaStudy .bao-bubble{max-width:min(58vw,205px)}
+#pandaStudy .bao-bubble{max-width:92vw}
 /* quiz buddy is centred → keep within the side gaps so it never runs off-screen */
-#pandaQuiz .bao-bubble{max-width:min(38vw,140px)}
+#pandaQuiz .bao-bubble{max-width:92vw}
 /* LEFT of mascot — tail on the right, pointing right toward Bao */
 .bao-left{right:calc(100% + 12px);transform:translateY(-50%);transform-origin:112% 50%}
 .bao-left::after{content:"";position:absolute;top:50%;left:100%;transform:translateY(-50%);
@@ -1286,23 +1286,28 @@ var MASCOTS={
       +'<ellipse cx="60" cy="64" rx="9" ry="11" fill="#3a3a3a"/>'
       +'<ellipse cx="57" cy="60" rx="2.4" ry="3" fill="#5a5a5a"/>'},
 
-  "🐹":{label:"the hamster",name:"hamster",body:"#ecca9e",belly:"#fbf3e6",arm:"#ecca9e",stroke:"#d9b486",glow:"#e8b87a",
-    head:'<g class="m-ear-l" style="transform-box:view-box;transform-origin:42px 26px"><circle cx="42" cy="22" r="9" fill="#ecca9e" stroke="#d9b486" stroke-width="1.2"/><circle cx="42" cy="23" r="4.5" fill="#f3c9b6"/></g>'
-      +'<g class="m-ear-r" style="transform-box:view-box;transform-origin:78px 26px"><circle cx="78" cy="22" r="9" fill="#ecca9e" stroke="#d9b486" stroke-width="1.2"/><circle cx="78" cy="23" r="4.5" fill="#f3c9b6"/></g>'
-      +'<ellipse cx="25" cy="63" rx="13" ry="12" fill="#ecca9e" stroke="#d9b486" stroke-width="1.3"/><ellipse cx="95" cy="63" rx="13" ry="12" fill="#ecca9e" stroke="#d9b486" stroke-width="1.3"/>'
-      +'<ellipse cx="60" cy="51" rx="35" ry="34" fill="#ecca9e" stroke="#d9b486" stroke-width="1.5"/>'
-      +'<ellipse cx="60" cy="60" rx="14" ry="10" fill="#fbf3e6"/>'
-      +'<circle cx="24" cy="66" r="4.5" fill="#f4a39a" opacity=".6"/><circle cx="96" cy="66" r="4.5" fill="#f4a39a" opacity=".6"/>'
-      +mEyes(48,72,48)
-      +'<ellipse cx="60" cy="57" rx="3" ry="2.2" fill="#23211e"/>'
-      +'<rect x="57.3" y="61" width="2.7" height="5.4" rx="1" fill="#fff" stroke="#e0d3bf" stroke-width=".7"/><rect x="60" y="61" width="2.7" height="5.4" rx="1" fill="#fff" stroke="#e0d3bf" stroke-width=".7"/>'},
+  "🦀":{label:"the crab",name:"crab",body:"#ec5a48",belly:"#f7b3a6",arm:"#ec5a48",stroke:"#c8402f",glow:"#f0805a",
+    head:'<g class="m-ear-l" style="transform-box:view-box;transform-origin:40px 92px"><path d="M40 92 Q26 84 20 64" stroke="#ec5a48" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="19" cy="60" rx="11" ry="8" fill="#ec5a48" stroke="#c8402f" stroke-width="1.3"/><ellipse cx="13" cy="50" rx="4.5" ry="9" fill="#ec5a48" stroke="#c8402f" stroke-width="1.3" transform="rotate(-10 13 50)"/><ellipse cx="25" cy="50" rx="4.5" ry="9" fill="#ec5a48" stroke="#c8402f" stroke-width="1.3" transform="rotate(8 25 50)"/></g>'
+      +'<g class="m-ear-r" style="transform-box:view-box;transform-origin:80px 92px"><path d="M80 92 Q94 84 100 64" stroke="#ec5a48" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="101" cy="60" rx="11" ry="8" fill="#ec5a48" stroke="#c8402f" stroke-width="1.3"/><ellipse cx="107" cy="50" rx="4.5" ry="9" fill="#ec5a48" stroke="#c8402f" stroke-width="1.3" transform="rotate(10 107 50)"/><ellipse cx="95" cy="50" rx="4.5" ry="9" fill="#ec5a48" stroke="#c8402f" stroke-width="1.3" transform="rotate(-8 95 50)"/></g>'
+      +'<path d="M50 86 L48 50 M70 86 L72 50" stroke="#ec5a48" stroke-width="4" stroke-linecap="round"/>'
+      +'<circle cx="48" cy="46" r="7" fill="#fff" stroke="#c8402f" stroke-width="1.3"/><circle cx="72" cy="46" r="7" fill="#fff" stroke="#c8402f" stroke-width="1.3"/>'
+      +'<g class="m-eyes"><g class="m-blink"><circle cx="48" cy="47" r="3.4" fill="#23211e"/><circle cx="72" cy="47" r="3.4" fill="#23211e"/><circle cx="49.3" cy="45.8" r="1.1" fill="#fff"/><circle cx="73.3" cy="45.8" r="1.1" fill="#fff"/></g></g>'
+      +'<circle cx="46" cy="100" r="4" fill="#f48a7a" opacity=".6"/><circle cx="74" cy="100" r="4" fill="#f48a7a" opacity=".6"/>'
+      +'<path d="M52 101 Q60 107 68 101" stroke="#a83020" stroke-width="2.2" fill="none" stroke-linecap="round"/>'
+      +'<g stroke="#c8402f" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M40 122 L34 127 M60 124 V129 M80 122 L86 127"/></g>'},
 
-  "🐧":{label:"the penguin",name:"penguin",body:"#2d323b",belly:"#fff",arm:"#2d323b",stroke:"#222831",glow:"#f0a93a",
-    head:'<ellipse cx="60" cy="50" rx="38" ry="35" fill="#2d323b" stroke="#222831" stroke-width="1.5"/>'
-      +'<ellipse cx="60" cy="56" rx="26" ry="27" fill="#fff"/>'
-      +mEyes(50,70,46)
-      +'<path d="M53 58 Q60 53 67 58 Q60 66 53 58 Z" fill="#f0a93a"/>'
-      +'<path d="M53 58 H67" stroke="#d98e25" stroke-width="1"/>'},
+  "🦉":{label:"the owl",name:"owl",body:"#a6794a",belly:"#f3e6cc",arm:"#a6794a",stroke:"#8a5f38",glow:"#caa46a",
+    head:'<g class="m-ear-l" style="transform-box:view-box;transform-origin:40px 30px"><path d="M34 32 Q29 16 27 7 Q39 14 45 30 Z" fill="#8a5f38"/></g>'
+      +'<g class="m-ear-r" style="transform-box:view-box;transform-origin:80px 30px"><path d="M86 32 Q91 16 93 7 Q81 14 75 30 Z" fill="#8a5f38"/></g>'
+      +'<ellipse cx="60" cy="51" rx="39" ry="35" fill="#a6794a" stroke="#8a5f38" stroke-width="1.5"/>'
+      +'<path d="M60 30 C39 30 32 45 35 58 C37 71 48 77 60 75 C72 77 83 71 85 58 C88 45 81 30 60 30 Z" fill="#f3e6cc"/>'
+      +'<circle cx="47" cy="50" r="12.5" fill="#fff" stroke="#caa46a" stroke-width="2"/><circle cx="73" cy="50" r="12.5" fill="#fff" stroke="#caa46a" stroke-width="2"/>'
+      +'<g class="m-eyes"><g class="m-blink"><circle cx="47" cy="53" r="6" fill="#23211e"/><circle cx="73" cy="53" r="6" fill="#23211e"/><circle cx="49" cy="51.2" r="1.8" fill="#fff"/><circle cx="75" cy="51.2" r="1.8" fill="#fff"/></g></g>'
+      +'<path d="M35 49 A12.5 12.5 0 0 1 59 49 Q47 54 35 49 Z" fill="#a6794a"/><path d="M61 49 A12.5 12.5 0 0 1 85 49 Q73 54 61 49 Z" fill="#a6794a"/>'
+      +'<path d="M35 49 Q47 54 59 49 M61 49 Q73 54 85 49" stroke="#8a5f38" stroke-width="1.4" fill="none" stroke-linecap="round"/>'
+      +'<path d="M56 57 L64 57 L60 65 Z" fill="#e8a33a" stroke="#c9851f" stroke-width="0.8" stroke-linejoin="round"/>'
+      +'<g fill="none" stroke="#4a3a2a" stroke-width="2.4" stroke-linecap="round"><circle cx="47" cy="50" r="13.5"/><circle cx="73" cy="50" r="13.5"/><path d="M59 49 Q60 46 61 49"/><path d="M33.5 49 L25 47 M86.5 49 L95 47"/></g>'
+      +'<g stroke="#8a5f38" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".55"><path d="M51 101 L60 105 L69 101"/><path d="M51 109 L60 113 L69 109"/></g>'},
 
   "🦁":{label:"the lion",name:"lion",body:"#eab063",belly:"#f7e8cd",arm:"#eab063",stroke:"#d99440",glow:"#e8a23a",
     head:'<g fill="#c9772e"><circle cx="60" cy="11" r="9"/><circle cx="40" cy="15" r="9"/><circle cx="80" cy="15" r="9"/>'
@@ -1434,7 +1439,7 @@ function stageFromGP(gp){var s=1;for(var i=0;i<STAGES.length;i++){if(gp>=STAGES[
 
 /* ---- Storage / accounts ---- */
 var DB_KEY="pandahsk.v2";
-var EMOJIS=["🐼","🐯","🐰","🦊","🐨","🐹","🐧","🦁","🐲","🐵"];
+var EMOJIS=["🐼","🐯","🐰","🦊","🐨","🦀","🦉","🦁","🐲","🐵"];
 function loadDB(){
   try{var raw=localStorage.getItem(DB_KEY);if(raw)return JSON.parse(raw);}catch(e){}
   return {accounts:{},current:null};
@@ -2115,8 +2120,8 @@ var BAO_FLAVOR={ /* per-mascot idle / study-chat flavor — keyed by acct().emoj
   "🐰":[{h:"想吃胡萝卜～",p:"xiǎng chī húluóbo"},{h:"蹦蹦跳跳真开心～",p:"bèng bèng tiào tiào zhēn kāixīn"}],
   "🦊":[{h:"我很聪明的哦～",p:"wǒ hěn cōngmíng de o"},{h:"尾巴毛茸茸的～",p:"wěiba máoróngróng de"}],
   "🐨":[{h:"想吃桉树叶…",p:"xiǎng chī ānshù yè"},{h:"好困啊…再睡一会儿",p:"hǎo kùn a… zài shuì yíhuìr"}],
-  "🐹":[{h:"想吃瓜子～",p:"xiǎng chī guāzǐ"},{h:"腮帮子鼓鼓的～",p:"sāibāngzi gǔgǔ de"}],
-  "🐧":[{h:"想吃鱼～",p:"xiǎng chī yú"},{h:"这里有点冷呢～",p:"zhèlǐ yǒudiǎn lěng ne"}],
+  "🦀":[{h:"横着走最快～",p:"héng zhe zǒu zuì kuài"},{h:"小心我的钳子哦～",p:"xiǎoxīn wǒ de qiánzi o"}],
+  "🦉":[{h:"我是夜猫子～",p:"wǒ shì yèmāozi"},{h:"戴上眼镜更聪明～",p:"dài shàng yǎnjìng gèng cōngmíng"}],
   "🦁":[{h:"我是大王哦～",p:"wǒ shì dàwáng o"},{h:"想吃点肉～",p:"xiǎng chī diǎn ròu"}],
   "🐲":[{h:"我能腾云驾雾哦！",p:"wǒ néng téng yún jià wù o"},{h:"今天想飞一飞～",p:"jīntiān xiǎng fēi yi fēi"}],
   "🐵":[{h:"想吃香蕉～",p:"xiǎng chī xiāngjiāo"},{h:"来玩儿一会儿嘛～",p:"lái wánr yíhuìr ma"}]
