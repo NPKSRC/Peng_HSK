@@ -189,12 +189,13 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
 @keyframes bao-out-fade{to{opacity:0}}
 
 /* ---------- Flashcard ---------- */
-.card-wrap{perspective:1400px;margin-bottom:14px;touch-action:pan-y;-webkit-user-select:none;user-select:none}
-.card{position:relative;width:100%;height:362px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,.2,.2,1)}
+.card-wrap{margin-bottom:14px;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.card-swipe{position:relative;width:100%;height:362px;perspective:1400px;will-change:transform;transition:transform .5s cubic-bezier(.4,.2,.2,1)}
+.card-swipe.dragging{transition:none!important}
+.card-swipe.fly-left{transition:transform .3s ease,opacity .3s ease;transform:translateX(-130%) rotate(-12deg)!important;opacity:0}
+.card-swipe.fly-right{transition:transform .3s ease,opacity .3s ease;transform:translateX(130%) rotate(12deg)!important;opacity:0}
+.card{position:absolute;inset:0;cursor:pointer;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,.2,.2,1)}
 .card.flipped{transform:rotateY(180deg)}
-.card.dragging{transition:none}
-.card.fly-left{transition:transform .3s ease,opacity .3s ease;transform:translateX(-130%) rotate(-12deg)!important;opacity:0}
-.card.fly-right{transition:transform .3s ease,opacity .3s ease;transform:translateX(130%) rotate(12deg)!important;opacity:0}
 .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--cloud);border-radius:var(--r-lg);box-shadow:var(--shadow);border:1.5px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 22px;text-align:center;overflow:hidden}
 .face .tag{position:absolute;top:14px;left:14px;font-family:var(--display);font-weight:700;font-size:.68rem;letter-spacing:.6px;text-transform:uppercase;color:var(--bamboo-deep);background:#e3efeb;padding:5px 11px;border-radius:999px}
 .face .statustag{position:absolute;top:14px;right:14px;font-family:var(--display);font-weight:800;font-size:.64rem;letter-spacing:.5px;text-transform:uppercase;padding:5px 10px;border-radius:999px;color:#fff}
@@ -784,9 +785,11 @@ body[data-mood="sad"] .mascot{animation:m-sad .6s ease forwards}
     </div>
 
     <div class="card-wrap" id="cardWrap">
-      <div class="card" id="card" tabindex="0" role="button" aria-label="Flashcard. Tap to flip, swipe to move.">
-        <div class="face front" id="cardFront"></div>
-        <div class="face back" id="cardBack"></div>
+      <div class="card-swipe" id="cardSwipe">
+        <div class="card" id="card" tabindex="0" role="button" aria-label="Flashcard. Tap to flip, swipe to move.">
+          <div class="face front" id="cardFront"></div>
+          <div class="face back" id="cardBack"></div>
+        </div>
       </div>
     </div>
 
@@ -1900,9 +1903,14 @@ function bindCardExtras(){
 }
 function flipCard(){study.flipped=!study.flipped;if(study.flipped){setMood("think");if(Math.random()<0.3)baoSay("think",$("#pandaStudy"),{placement:"left"});}else setMood("idle");renderCard();}
 function gotoCard(n,dir){
-  var card=$("#card");
-  if(dir){card.classList.add(dir==="next"?"fly-left":"fly-right");
-    setTimeout(function(){card.classList.remove("fly-left","fly-right");study.idx=n;study.flipped=false;setMood("idle");renderCard();},220);
+  var card=$("#card");var sw=$("#cardSwipe");
+  if(dir){sw.classList.add(dir==="next"?"fly-left":"fly-right");
+    setTimeout(function(){
+      card.style.transition="none"; // snap flip to front while off-screen
+      study.idx=n;study.flipped=false;setMood("idle");renderCard();
+      sw.classList.remove("fly-left","fly-right");
+      requestAnimationFrame(function(){requestAnimationFrame(function(){card.style.transition="";});});
+    },220);
   }else{study.idx=n;study.flipped=false;renderCard();}
 }
 function nextCard(swipe){if(study.idx<study.pool.length-1)gotoCard(study.idx+1,swipe?"next":null);else{toast("That's the last card 🎋");}}
@@ -1928,12 +1936,13 @@ function updateDueCounts(){
 
 /* swipe / drag */
 function initSwipe(){
-  var wrap=$("#cardWrap");var card=$("#card");
+  var wrap=$("#cardWrap");var card=$("#card");var sw=$("#cardSwipe");
   var startX=0,startY=0,dx=0,dy=0,active=false,moved=false,axis=null;
   var lastX=0,lastT=0,vx=0,W=window.innerWidth||360;
-  function baseRot(){return study.flipped?"rotateY(180deg) ":"";}
-  function clearAfter(ms){setTimeout(function(){card.style.transition="";card.style.transform="";card.style.opacity="";},ms);}
-  function down(x,y){startX=x;startY=y;dx=0;dy=0;active=true;moved=false;axis=null;lastX=x;lastT=Date.now();vx=0;W=window.innerWidth||360;card.style.transition="";card.classList.add("dragging");}
+  // Swipe transforms live on #cardSwipe (2D only). The 3D flip stays on #card.
+  // Keeping rotateY off the swiped element avoids the WebKit mirrored-front bug.
+  function clearAfter(ms){setTimeout(function(){sw.style.transition="";sw.style.transform="";sw.style.opacity="";},ms);}
+  function down(x,y){startX=x;startY=y;dx=0;dy=0;active=true;moved=false;axis=null;lastX=x;lastT=Date.now();vx=0;W=window.innerWidth||360;sw.style.transition="";sw.classList.add("dragging");}
   function move(x,y){
     if(!active)return false;
     dx=x-startX;dy=y-startY;
@@ -1943,34 +1952,36 @@ function initSwipe(){
       var atStart=study.idx===0,atEnd=study.idx===study.pool.length-1;
       var d2=((dx>0&&atStart)||(dx<0&&atEnd))?dx*0.35:dx; // rubber-band resistance at the ends
       var rot=d2/22;
-      card.style.transform=baseRot()+"translateX("+d2+"px) rotate("+rot+"deg)";
-      card.style.opacity=String(Math.max(.5,1-Math.abs(d2)/640));
+      sw.style.transform="translateX("+d2+"px) rotate("+rot+"deg)";
+      sw.style.opacity=String(Math.max(.5,1-Math.abs(d2)/640));
       return true; // horizontal: caller should block page scroll
     }
     return false;
   }
   function snapBack(){
-    card.classList.remove("dragging");
-    card.style.transition="transform .42s cubic-bezier(.22,1,.36,1),opacity .3s ease";
-    card.style.transform=baseRot();card.style.opacity="1";
+    sw.classList.remove("dragging");
+    sw.style.transition="transform .42s cubic-bezier(.22,1,.36,1),opacity .3s ease";
+    sw.style.transform="";sw.style.opacity="1";
     clearAfter(440);
   }
   function advance(dir){ // dir: "next" flings left, "prev" flings right
     var canMove=dir==="next"?study.idx<study.pool.length-1:study.idx>0;
     if(!canMove){snapBack();if(dir==="next")toast("That's the last card 🎋");return;}
     var off=dir==="next"?-1:1;
-    card.classList.remove("dragging");
-    card.style.transition="transform .26s cubic-bezier(.4,0,.7,.4),opacity .26s ease";
-    card.style.transform=baseRot()+"translateX("+(off*W*1.05)+"px) rotate("+(off*12)+"deg)";
-    card.style.opacity="0";
+    sw.classList.remove("dragging");
+    sw.style.transition="transform .26s cubic-bezier(.4,0,.7,.4),opacity .26s ease";
+    sw.style.transform="translateX("+(off*W*1.05)+"px) rotate("+(off*12)+"deg)";
+    sw.style.opacity="0";
     setTimeout(function(){
-      card.style.transition="none";
+      sw.style.transition="none";
+      card.style.transition="none"; // snap flip to front instantly while off-screen
       if(dir==="next")study.idx++;else study.idx--;
       study.flipped=false;setMood("idle");renderCard();
-      card.style.transform=baseRot()+"translateX("+(off*44)+"px)";card.style.opacity="0";
+      sw.style.transform="translateX("+(off*44)+"px)";sw.style.opacity="0";
       requestAnimationFrame(function(){requestAnimationFrame(function(){
-        card.style.transition="transform .4s cubic-bezier(.22,1,.36,1),opacity .3s ease";
-        card.style.transform=baseRot();card.style.opacity="1";
+        card.style.transition=""; // restore flip animation for tap-to-flip
+        sw.style.transition="transform .4s cubic-bezier(.22,1,.36,1),opacity .3s ease";
+        sw.style.transform="";sw.style.opacity="1";
         clearAfter(420);
       });});
     },260);
@@ -1982,8 +1993,8 @@ function initSwipe(){
       if((fast||far)&&dx<0)advance("next");
       else if((fast||far)&&dx>0)advance("prev");
       else snapBack();
-    }else if(!moved){card.classList.remove("dragging");flipCard();}
-    else{card.classList.remove("dragging");card.style.transition="";card.style.transform="";card.style.opacity="";}
+    }else if(!moved){sw.classList.remove("dragging");flipCard();}
+    else{sw.classList.remove("dragging");sw.style.transition="";sw.style.transform="";sw.style.opacity="";}
   }
   wrap.addEventListener("touchstart",function(e){if(e.target&&e.target.closest&&e.target.closest(".spk,.hardstar")){return;}down(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
   wrap.addEventListener("touchmove",function(e){
